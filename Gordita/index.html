@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Día de la Mujer</title>
+    <style>
+        /* ESTILOS GENERALES */
+        :root {
+            --color-morado: #6b2c91;
+            --color-morado-claro: #9b59b6;
+            --color-negro: #222222;
+            --color-gris: #444444;
+            --color-gris-claro: #aaaaaa;
+            --color-blanco: #ffffff;
+            --color-acento: #9b59b6;
+            --sombra: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #111111;
+            background-image: linear-gradient(30deg, #1a1a1a 12%, transparent 12.5%, transparent 87%, #1a1a1a 87.5%, #1a1a1a),
+                linear-gradient(150deg, #1a1a1a 12%, transparent 12.5%, transparent 87%, #1a1a1a 87.5%, #1a1a1a),
+                linear-gradient(30deg, #1a1a1a 12%, transparent 12.5%, transparent 87%, #1a1a1a 87.5%, #1a1a1a),
+                linear-gradient(150deg, #1a1a1a 12%, transparent 12.5%, transparent 87%, #1a1a1a 87.5%, #1a1a1a),
+                linear-gradient(60deg, #222222 25%, transparent 25.5%, transparent 75%, #222222 75%, #222222);
+            background-size: 80px 140px;
+            background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0;
+            color: var(--color-blanco);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--color-blanco);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card {
+            background-color: var(--color-negro);
+            border-radius: 15px;
+            box-shadow: var(--sombra);
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(107, 44, 145, 0.3);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(107, 44, 145, 0.4);
+        }
+
+        .card h2 {
+            color: var(--color-morado-claro);
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        button {
+            background-color: var(--color-morado);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background-color: var(--color-morado-claro);
+            transform: scale(1.05);
+        }
+
+        /* ENCABEZADO */
+        header {
+            text-align: center;
+            padding: 50px 0;
+            background: linear-gradient(135deg, var(--color-morado) 0%, var(--color-negro) 100%);
+            margin-bottom: 40px;
+            border-radius: 0 0 30px 30px;
+            box-shadow: var(--sombra);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.6) 100%);
+            z-index: 1;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: white;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+            position: relative;
+            z-index: 2;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: var(--color-gris-claro);
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* CARTA DIGITAL */
+        .carta-container {
+            position: relative;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .carta {
+            position: relative;
+            width: 100%;
+            font-size: 1.1rem;
+            color: var(--color-gris-claro);
+            line-height: 1.8;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            height: 20px;
+            background-color: var(--color-morado-claro);
+            animation: blink 0.7s infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* GALERÍA DE RECUERDOS */
+        .gallery-container {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: var(--sombra);
+            background-color: rgba(20, 20, 20, 0.7);
+        }
+
+        .gallery {
+            display: flex;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item {
+            position: relative;
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .gallery-image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: var(--sombra);
+            margin-bottom: 20px;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-image-container:hover {
+            transform: scale(1.1) rotate(5deg);
+            z-index: 10;
+            box-shadow: 0 15px 30px rgba(107, 44, 145, 0.6);
+        }
+
+        .gallery-image {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .gallery-description {
+            text-align: center;
+            max-width: 80%;
+            font-style: italic;
+            color: var(--color-gris-claro);
+        }
+
+        .gallery-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .gallery-btn {
+            margin: 0 10px;
+            background-color: var(--color-morado);
+            box-shadow: 0 4px 10px rgba(107, 44, 145, 0.5);
+        }
+
+        .gallery-btn:hover {
+            background-color: var(--color-morado-claro);
+        }
+
+        /* JUEGO DE MEMORIA */
+        .game-container {
+            text-align: center;
+        }
+
+        .memory-game {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .memory-card {
+            position: relative;
+            height: 100px;
+            background-color: var(--color-morado);
+            border-radius: 8px;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+        }
+
+        .memory-card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .memory-card.matched {
+            transform: rotateY(180deg);
+            background-color: var(--color-acento);
+            cursor: default;
+        }
+
+        .front, .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+        }
+
+        .front {
+            background-color: var(--color-negro);
+            transform: rotateY(180deg);
+            border: 2px solid var(--color-morado-claro);
+        }
+
+        .back {
+            background: linear-gradient(135deg, var(--color-morado), var(--color-negro));
+            color: white;
+        }
+
+        /* FRASES INSPIRADORAS */
+        .quotes-container {
+            position: relative;
+            min-height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .quote {
+            position: absolute;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .quote.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .quote p {
+            font-size: 1.4rem;
+            font-style: italic;
+            color: var(--color-gris-claro);
+            margin-bottom: 15px;
+        }
+
+        .quote span {
+            font-weight: 600;
+            color: var(--color-morado-claro);
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--color-negro);
+            padding: 30px 0;
+            border-top: 1px solid rgba(107, 44, 145, 0.3);
+        }
+
+        footer p {
+            color: var(--color-gris-claro);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .memory-game {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .gallery-image {
+                width: 200px;
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .memory-game {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-image {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Feliz Día de la Mujer</h1>
+    </header>
+
+    <div class="container">
+        <!-- CARTA DIGITAL -->
+        <section id="carta-section" class="card">
+            <h2>Para mi hermana</h2>
+            <div class="carta-container">
+                <div class="carta" id="carta">
+                    <span class="cursor"></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- GALERÍA DE RECUERDOS -->
+        <section id="gallery-section" class="card">
+            <h2>Nuestros momentos juntas</h2>
+            <div class="gallery-container">
+                <div class="gallery" id="gallery">
+                    <div class="gallery-item">
+                        <div class="gallery-image-container">
+                            <img src="recuerdo 1.jpg" alt="Recuerdo 1" class="gallery-image">
+                        </div>
+                        <p class="gallery-description">Una de nuestras primeras fotos haciendo gestos graciosos</p>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-image-container">
+                            <img src="recuerdo 2.jpg" alt="Recuerdo 2" class="gallery-image">
+                        </div>
+                        <p class="gallery-description">Problemas que teniamos pero de igual manera siempre nos haciamos reir eramos como el lugar seguro tu de mi y yo y yo de ti</p>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-image-container">
+                            <img src="recuerdo 3.jpg" alt="Recuerdo 3" class="gallery-image">
+                        </div>
+                        <p class="gallery-description">Nuestro papá prestandose para la joda</p>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-nav">
+                <button class="gallery-btn" id="prev-btn">Anterior</button>
+                <button class="gallery-btn" id="next-btn">Siguiente</button>
+            </div>
+        </section>
+
+        <!-- JUEGO DE MEMORIA -->
+        <section id="game-section" class="card">
+            <h2>Juego de Memoria</h2>
+            <p>Encuentra los pares de símbolos</p>
+            <div class="game-container">
+                <div class="memory-game" id="memory-game"></div>
+                <button id="restart-game" style="margin-top: 20px;">Reiniciar juego</button>
+            </div>
+        </section>
+
+        <!-- FRASES INSPIRADORAS -->
+        <section id="quotes-section" class="card">
+            <h2>Frases inspiradoras</h2>
+            <div class="quotes-container" id="quotes-container">
+                <!-- Las frases se cargarán dinámicamente con JavaScript -->
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container" style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
+            <p>Hecho con 💜 para ti</p>
+            <p>Feliz Día Internacional de la Mujer</p>
+        </div>
+    </footer>
+
+    <script>
+        // Esperar a que el DOM esté completamente cargado
+        document.addEventListener('DOMContentLoaded', function() {
+            // EFECTOS DE APARICIÓN AL SCROLL
+            const sections = document.querySelectorAll('section');
+
+            function checkVisibility() {
+                sections.forEach(section => {
+                    const rect = section.getBoundingClientRect();
+                    const isVisible = (rect.top <= window.innerHeight * 0.8);
+                    
+                    if (isVisible) {
+                        section.classList.add('visible');
+                    }
+                });
+            }
+
+            // Llamar una vez para los elementos visibles al cargar
+            checkVisibility();
+
+            // Escuchar el evento de scroll
+            window.addEventListener('scroll', checkVisibility);
+
+            // CARTA DIGITAL CON EFECTO DE ESCRITURA
+            const carta = document.getElementById('carta');
+            const mensaje = `Querida Gorda(Hermanita),
+
+En este día tan especial, quiero dedicarte algunas palabras. No solo por ser hoy el dia de la mujer te voy a decir que eres una excelente hermana, siempre te lo digo y sinceramente nose que sería de mi si tu no estuvieras conmigo, tu forma de ser es única e inigualable. A pesar que dicutamos o tengamos problemas jamás se me va olvidar todos los cosas que hemos pasado juntos y también las cosas que has hecho por mi para hacemer sentir feliz.
+
+Me siento increíblemente afortunado de tenerte como hermana. Tu fortaleza y tu determinación como madre me inspiran cada día mas a mejorar en mi mismo. Te agradezco, porque has estado a mi lado en los momentos más difíciles y en los mas alegres. 
+
+Gracias por ser mi hermana, una madre y una amiga para mi. Te mereces todo lo que te da de ofrecer la vida. TE AMO MUCHO
+
+Te quiero infinitamente,`;
+            
+            let index = 0;
+
+            function escribirCarta() {
+                if (index < mensaje.length) {
+                    if (mensaje[index] === '\n') {
+                        carta.innerHTML += '<br>';
+                    } else {
+                        carta.innerHTML += mensaje[index];
+                    }
+                    index++;
+                    setTimeout(escribirCarta, 30);
+                } else {
+                    carta.innerHTML += '<br><span style="font-weight: bold; color: #9b59b6;">Tu hermano</span>';
+                }
+            }
+
+            // Iniciar efecto de escritura después de un breve retraso
+            setTimeout(escribirCarta, 1000);
+
+            // GALERÍA DE RECUERDOS
+            const gallery = document.getElementById('gallery');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.gallery-item');
+            const totalSlides = slides.length;
+
+            function showSlide(index) {
+                gallery.style.transform = `translateX(-${index * 100}%)`;
+            }
+
+            prevBtn.addEventListener('click', () => {
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                showSlide(currentSlide);
+            });
+
+            nextBtn.addEventListener('click', () => {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                showSlide(currentSlide);
+            });
+
+            // JUEGO DE MEMORIA
+            const memoryGame = document.getElementById('memory-game');
+            const restartGameBtn = document.getElementById('restart-game');
+            const symbols = ['❤️', '🌟', '🌈', '🎁', '🌸', '🦋', '🌞', '✨'];
+            let cards = [];
+            let flippedCards = [];
+            let matchedPairs = 0;
+
+            function createMemoryGame() {
+                // Duplicar símbolos y mezclarlos
+                const gameSymbols = [...symbols, ...symbols];
+                shuffleArray(gameSymbols);
+                
+                // Limpiar el contenedor del juego
+                memoryGame.innerHTML = '';
+                
+                // Crear las tarjetas
+                gameSymbols.forEach((symbol, index) => {
+                    const card = document.createElement('div');
+                    card.className = 'memory-card';
+                    card.dataset.symbol = symbol;
+                    card.dataset.index = index;
+                    
+                    const front = document.createElement('div');
+                    front.className = 'front';
+                    front.textContent = symbol;
+                    
+                    const back = document.createElement('div');
+                    back.className = 'back';
+                    back.textContent = '?';
+                    
+                    card.appendChild(front);
+                    card.appendChild(back);
+                    
+                    card.addEventListener('click', flipCard);
+                    memoryGame.appendChild(card);
+                });
+                
+                // Reiniciar variables del juego
+                cards = document.querySelectorAll('.memory-card');
+                flippedCards = [];
+                matchedPairs = 0;
+            }
+
+            function shuffleArray(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
+            }
+
+            function flipCard() {
+                // Evitar flip si la carta ya está volteada o si ya hay dos cartas volteadas
+                if (this.classList.contains('flipped') || flippedCards.length >= 2) {
+                    return;
+                }
+                
+                // Añadir a la lista de cartas volteadas
+                this.classList.add('flipped');
+                flippedCards.push(this);
+                
+                // Si hay dos cartas volteadas, verificar si coinciden
+                if (flippedCards.length === 2) {
+                    setTimeout(checkForMatch, 700);
+                }
+            }
+
+            function checkForMatch() {
+                const [firstCard, secondCard] = flippedCards;
+                const isMatch = firstCard.dataset.symbol === secondCard.dataset.symbol;
+                
+                if (isMatch) {
+                    // Si coinciden, marcarlas como coincidentes
+                    firstCard.classList.add('matched');
+                    secondCard.classList.add('matched');
+                    matchedPairs++;
+                    
+                    // Verificar si el juego ha terminado
+                    if (matchedPairs === symbols.length) {
+                        setTimeout(() => {
+                            alert('¡Felicidades! Has completado el juego de memoria.');
+                        }, 500);
+                    }
+                } else {
+                    // Si no coinciden, darles la vuelta de nuevo
+                    firstCard.classList.remove('flipped');
+                    secondCard.classList.remove('flipped');
+                }
+                
+                // Reiniciar lista de cartas volteadas
+                flippedCards = [];
+            }
+
+            // Inicializar el juego de memoria
+            createMemoryGame();
+
+            // Evento para reiniciar el juego
+            restartGameBtn.addEventListener('click', createMemoryGame);
+
+            // FRASES INSPIRADORAS
+            const quotesContainer = document.getElementById('quotes-container');
+            const quotes = [
+                {
+                    text: "Eres más fuerte de lo que crees, más valiente de lo que imaginas y más capaz de lo que nunca te dijeron.",
+                    author: "Andresito luis"
+                },
+                {
+                    text: "Una mujer con imaginación es una mujer que no solo sabe proyectar la vida de sus propios sueños, sino que también sabe crear el sueño de la vida de otras personas.",
+                    author: "Anaïs Nin"
+                },
+                {
+                    text: "La pregunta no es quién me va a dejar; es quién va a detenerme.",
+                    author: "Ayn Rand"
+                },
+                {
+                    text: "Soy dueña de mi destino, soy capitana de mi alma.",
+                    author: "Invictus (adaptada)"
+                },
+                {
+                    text: "Las mujeres son líderes en todas partes donde mires: desde la CEO hasta la ama de casa que cría a sus hijos y dirige su familia.",
+                    author: "Sheryl Sandberg"
+                }
+            ];
+
+            // Crear elementos para cada cita
+            quotes.forEach((quote, index) => {
+                const quoteElement = document.createElement('div');
+                quoteElement.className = 'quote';
+                if (index === 0) quoteElement.classList.add('active');
+                
+                quoteElement.innerHTML = `
+                    <p>"${quote.text}"</p>
+                    <span>- ${quote.author}</span>
+                `;
+                
+                quotesContainer.appendChild(quoteElement);
+            });
+
+            // Rotar las citas automáticamente
+            const allQuotes = document.querySelectorAll('.quote');
+            let currentQuote = 0;
+
+            function rotateQuotes() {
+                allQuotes.forEach(quote => quote.classList.remove('active'));
+                currentQuote = (currentQuote + 1) % allQuotes.length;
+                allQuotes[currentQuote].classList.add('active');
+            }
+
+            // Mostrar la primera cita inmediatamente
+            allQuotes[0].classList.add('active');
+            
+            // Cambiar citas cada 5 segundos
+            setInterval(rotateQuotes, 5000);
+        });
+    </script>
+</body>
+</html>
